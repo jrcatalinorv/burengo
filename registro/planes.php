@@ -111,7 +111,7 @@ $('.panList').on("click", "a.planselection", function(){
     var price  =  parseFloat($(this).attr('pricePlan'));
 	if(price == 0 ){
 		 $('#getPlan').val(idPlan);
-		 location.href="confirmation.php?p="+idPlan+"&acc="+code;
+		 location.href="plan-confirmation.php?p="+idPlan+"&acc="+code;
 	}else{
 		$('#getPlan').val(idPlan);
 		$('#mdlPlanValue').val(price);

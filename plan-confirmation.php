@@ -1,11 +1,12 @@
 <?php 
 session_start();
 date_default_timezone_set("America/Santo_Domingo");
-require_once "../modelos/conexion.php";
-require_once "../modelos/data.php";
+require_once "modelos/conexion.php";
+require_once "modelos/data.php";
  $date = date('Y-m-d'); 
  $plan = $_REQUEST["p"];
  $uid = $_REQUEST["acc"];
+ 
  
 /* Colocar datos del plan */
 $stmt2 = Conexion::conectar()->prepare("SELECT * FROM bgo_planes WHERE planid = ".$plan."");
@@ -16,13 +17,14 @@ $precio_plan   = number_format($results['planprice'],2).' '.$results['plancurren
 $duracion_plan = $results['planduration'];
 $max_fotos = $results['planmaxf'];
 $max_post = $results['planmaxp'];
+$duration  = $results['planduration'];
 
 $_SESSION['bgo_maxP'] = $max_post;
 $_SESSION['bgo_planName'] = $nombre_plan;
 $_SESSION['bgo_perfil'] = $plan;
 
 
-$up_expdate =  date('Y-m-d', strtotime($date. ' + 30 days'));
+$up_expdate =  date('Y-m-d', strtotime($date. ' + '.$duration.' days'));
 
 /* Actualizar los datos */
 $stmt0 = Conexion::conectar()->prepare("UPDATE bgo_user_plan SET up_planid = ".$plan." , up_maxp =".$max_post." , up_maxf =".$max_fotos." , up_expdate = '".$up_expdate."' WHERE up_uid = '".$uid."'");
@@ -45,8 +47,8 @@ $stmt -> execute();
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="icon" type="image/png" href="favicon.ico"/>
   <title>Burengo</title>
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo burengoBaseUrl; ?>plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo burengoBaseUrl; ?>dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -54,7 +56,7 @@ $stmt -> execute();
   <!-- Navbar -->
  <nav class="main-header navbar navbar-expand-md navbar-dark bg-navy"> 
     <div class="container">
-      <a href="index.php" class="navbar-brand"> <img src="../../dist/img/burengo.png" alt="Burengo Logo" class="brand-image   elevation-0" style="opacity: .8"> </a>
+      <a href="index.php" class="navbar-brand"> <img src="<?php echo burengoBaseUrl; ?>dist/img/burengo.png" alt="Burengo Logo" class="brand-image   elevation-0" style="opacity: .8"> </a>
       <div class="collapse navbar-collapse order-3" id="navbarCollapse"><ul class="navbar-nav"> </ul></div>
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto"> </ul>
     </div>
@@ -105,7 +107,7 @@ echo '<div class="alert alert-success alert-dismissible">
                   <div class="info-box bg-light">
                     <div class="info-box-content">
                       <span class="info-box-text text-center text-muted"> <?php echo burengo_maxp; ?> </span>
-                      <span class="info-box-number text-center text-muted mb-0"> <?php if($max_post==0){ echo "Ilimitadas"; } else{ echo $max_post;  }; ?> </span>
+                      <span class="info-box-number text-center text-muted mb-0"> <?php if($max_post==99999){ echo "Ilimitadas"; } else{ echo $max_post;  }; ?> </span>
                     </div>
                   </div>
                 </div>
@@ -149,15 +151,90 @@ echo '<div class="alert alert-success alert-dismissible">
   
  
   
-<footer class="main-footer"> Burengo &copy; 2020 - <?php echo burengo_copyright; ?> </footer>
+<div class="modal fade" id="modal-sample">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title"> <?php echo burengo_policy2; ?></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+			<div class="row" style="height:300px;   overflow-y: auto; overflow-x: hidden;">
+              <p class="justify-content-between"><?php echo burengo_contract1; ?></p>
+			  </div>
+ 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default float-right" data-dismiss="modal"> <?php echo burengo_close; ?> </button>
+              
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+<div class="modal fade" id="modal-sample2">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"> <?php echo burengo_policy1; ?> </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+			 <div class="row" style="height:300px;   overflow-y: auto; overflow-x: hidden;">
+               <p class="justify-content-between"> <?php echo burengo_contract2; ?> </p>
+		     </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default float-right" data-dismiss="modal"> <?php echo burengo_close; ?></button>
+              
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+<section class="main-footer bg-navy">   </section>  
+<footer class="main-footer bg-navy" style="border-color: #001f3f;"> 
+ <div class="row">	
+	<div class="col-md-8">
+	<p>El uso de este site implica la aceptación de nuestra política de privacidad y términos y condiciones de uso.</p>
+	
+	<p class="pt-2"><a href="#" class="text-center text-danger" data-toggle="modal" data-target="#modal-sample"><?php echo burengo_policy2; ?> </a> </p>
+	<p><a href="#" class=" text-center text-danger" data-toggle="modal" data-target="#modal-sample2"> Política de Devoluciones, Reembolsos y Cancelaciones </a></p>
+	<p><a href="<?php echo burengoBaseUrl; ?>" class=" text-center text-danger"> Ir a Portada </a></p>
+
+	</div>  
+    <div class="col-md-4"> 
+		<h6 class="mb-4 text-info"> ¡Síguenos & Contáctanos! </h6> 
+<ul class="list-unstyled pl-2">
+<li><a href="https://www.facebook.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-facebook-square fa-1x text-primary"></i>  burengoweb </a></li>
+
+<li class="pt-2"><a href="https://www.instagram.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-instagram fa-1x text-danger"></i></i>  burengoweb </a></li>
+
+<li class="pt-2"><a href="mailto:info@burengo.com" target="_blank" class="btn-link text-white"> <i class="fas fa-envelope fa-1x text-warning"></i></i>  info@burengo.com </a></li>
+<li class="pt-2"><a href="contacto.php" class="btn-link text-white"> <i class="fas fa-envelope-open-text fa-1x text-info"></i> Preguntas y Sugerencias      </a></li>
+               
+              </ul>		
+		
+	</div>
+<div class="col-md-12 pt-4 " style="bottom:0;"> 	<h6 class="mb-2">Burengo.com &copy; 2020 - <?php echo burengo_copyright; ?> </h6> </div>	
+</div>
+	
+</footer>
 
  
 
 </div>
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../../dist/js/adminlte.min.js"></script>
-<script src="../../plugins/toastr/toastr.min.js"></script>
+<script src="<?php echo burengoBaseUrl; ?>plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo burengoBaseUrl; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo burengoBaseUrl; ?>dist/js/adminlte.min.js"></script>
+<script src="<?php echo burengoBaseUrl; ?>plugins/toastr/toastr.min.js"></script>
 <script type="text/javascript">
  
 
