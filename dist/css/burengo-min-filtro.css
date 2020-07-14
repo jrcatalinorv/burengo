@@ -133,6 +133,7 @@
 .gAdsenceVerticalphone{ display:none; overflow:hidden;}
 }
 
+
 @media only screen and (min-width: 1681px){   
 .burengo_case {-ms-flex: 25%; flex: 25%; max-width: 25%; padding: 0 1px;}
 .img-holder {width: 260px;height:220px;} 

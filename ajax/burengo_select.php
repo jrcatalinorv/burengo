@@ -51,7 +51,7 @@ $imgNewClass="img-normal";
 $valit = "";
 list($img_width, $img_height) = getimagesize("../media/thumbnails/".$results['bgo_thumbnail']."");
 
-if( $results['bgo_stdesc'] == 9 ){ $dest = 'style="border: solid 4px #ffc926"'; $iconDesc=' <span class="text-warning"> <i class="fas fa-star"></i> </span>';  }
+if( $results['bgo_stdesc'] == 9 ){ $dest = 'style="border: solid 4px #ffc926"'; $iconDesc=' <span class="text-warning cat-star"> <i class="fas fa-star"></i> </span>';  }
 if( intval($img_height) >= intval($img_width) ){ $imgNewClass = "re-route";  $valit='';}  
 
 if($pageno==1){ $prev = 1;  }else{ $prev = intval($pageno)-1; }

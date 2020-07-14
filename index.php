@@ -182,7 +182,7 @@ $_SESSION['bgo_maxP'] = "0";
 <div class="recentPost">
 <?php 
 $pageno = 1;
-$no_of_records_per_page = 18;
+$no_of_records_per_page = 24;
 $offset = ($pageno-1) * $no_of_records_per_page;
 
 $stmt = Conexion::conectar()->prepare(" SELECT COUNT(p.bgo_code) as totalr FROM bgo_posts p INNER JOIN bgo_places pl ON p.bgo_lugar = pl.pcid AND p.bgo_status = 1 AND p.bgo_country_code = '".COUNTRY_CODE."'");	
@@ -203,8 +203,8 @@ $imgNewClass="img-normal-recent";
 $valit = "";
 list($img_width, $img_height) = getimagesize("media/thumbnails/".$results['bgo_thumbnail']."");
 
-if( $results['bgo_stdesc'] == 9 ){ $dest = 'style="border: solid 4px #ffc926"'; $iconDesc=' <span class="text-warning"> <i class="fas fa-star"></i> </span>';  }
-if( intval($img_height) >= intval($img_width) ){ $imgNewClass = "re-route";  $valit='';}  
+if( $results['bgo_stdesc'] == 9 ){ $dest = 'style="border: solid 4px #ffc926"'; $iconDesc=' <span class="text-warning cat-star"> <i class="fas fa-star"></i> </span>';  }
+if( intval($img_height) >= intval($img_width) ){ $imgNewClass = "re-route-recent";  $valit='';}  
 
 if($pageno==1){ $prev = 1;  }else{ $prev = intval($pageno)-1; }
 if($pageno==$total_pages){ $next = $pageno; }else{ $next = intval($pageno)+1; }
@@ -217,14 +217,14 @@ echo '<div   class="img-holder-recent">
 	  <div style="z-index:999; margin-top:-2em;" class="pl-2">'; 
 
   if($results['bgo_cat']==1){	  
-	 echo '<span class="badge bg-success bgo_mfont"> '.$results["cur_sign"].' '.number_format($results['bgo_price']).' '.convert($results['bgo_uom']).' '.$valit.' </span>  
+	 echo '<span class="badge bg-success bgo_mfont-recent"> '.$results["cur_sign"].' '.number_format($results['bgo_price']).' '.convert($results['bgo_uom']).' '.$valit.' </span>  
 	  '.$iconDesc.'</div>';
   }else{
-	 echo '<span class="badge bg-warning bgo_mfont"> '.$results["cur_sign"].' '.number_format($results['bgo_price']).' '.convert($results['bgo_uom']).' '.$valit.' </span>  
+	 echo '<span class="badge bg-warning bgo_mfont-recent"> '.$results["cur_sign"].' '.number_format($results['bgo_price']).' '.convert($results['bgo_uom']).' '.$valit.' </span>  
 	'.$iconDesc.'</div>';
   }	
   
-echo '<h5 class="pt-2 bgo_font"> '.softTrim($results['bgo_title'],25).'';  
+echo '<h5 class="pt-2 bgo_font-recent"> '.softTrim($results['bgo_title'],25).'';  
 	echo '<br/>
 		<small class="float-left">  <i class="fas fa-map-marker-alt text-danger"></i> '.$results['pcstr'].'  </small>
 		<small>'; 

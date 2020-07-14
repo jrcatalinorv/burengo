@@ -96,7 +96,7 @@ if(isset($_SESSION['bgo_userId'])){
 
      <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-        <li class="nav-item"><a class="nav-link" href="">
+        <li class="nav-item"><a class="nav-link" href="perfil.php">
 			 <img alt="Avatar"  class="user-image" src="<?php echo burengoBaseUrl; ?>media/users/<?php echo $_SESSION['bgo_userImg']; ?>">
 			 <?php echo $_SESSION['bgo_user']; ?></a>
 		</li>
@@ -405,7 +405,7 @@ $('#place').load('<?php echo burengoBaseUrl; ?>ajax/burengo_select_places.php');
 $('#currency').load('<?php echo burengoBaseUrl; ?>ajax/bgo_select_currency.php')
 $('#price').number(true,0); 
 
-$('#cancel').click(function(){ location.href="../../../inicio.php"; });
+$('#cancel').click(function(){ location.href="<?php echo burengoBaseUrl; ?>"; });
 
 /* BTN Next  */
 $('#next').click(function(){
