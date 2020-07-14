@@ -1,7 +1,16 @@
 .plist {display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap;}
-.recentPost{ display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; }
 
- 
+/* Create four equal columns that sits next to each other */
+.burengo_case {
+  -ms-flex: 25%;  
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 1px;
+}
+
+.gAdsenceVerticalphone{display:none; overflow:hidden;}
+.gAdsenceVertical{display:none; overflow:hidden;}
+.gAdsenceHorizontal{display:none; overflow:hidden;}
 
 /* vistas celular */ 
 @media only screen and (min-width: 320px) and (max-width: 534px){ 

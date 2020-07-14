@@ -151,7 +151,58 @@ require_once "modelos/data.php";
 </center>
 </div>
 </div>  
-<footer class="main-footer"> Burengo &copy; 2020 - <?php echo burengo_copyright; ?>   </footer>
+ <div class="modal fade" id="modal-sample">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title"> <?php echo burengo_policy2; ?></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+			<div class="row" style="height:300px;   overflow-y: auto; overflow-x: hidden;">
+              <p class="justify-content-between"><?php echo burengo_contract1; ?></p>
+			  </div>
+ 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default float-right" data-dismiss="modal"> <?php echo burengo_close; ?> </button>
+              
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+<div class="modal fade" id="modal-sample2">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"> <?php echo burengo_policy1; ?> </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+			 <div class="row" style="height:300px;   overflow-y: auto; overflow-x: hidden;">
+               <p class="justify-content-between"> <?php echo burengo_contract2; ?> </p>
+		     </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default float-right" data-dismiss="modal"> <?php echo burengo_close; ?></button>
+              
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+ <section class="main-footer bg-navy" >   </section> 
+<?php include_once "burengo-footer.php"; ?>
+
+ 
 </div>
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

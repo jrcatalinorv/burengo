@@ -302,7 +302,8 @@ $desc_allow = $total_desc_permitidas - $total_desc;
         <!-- /.modal-dialog -->
       </div>
 
- 
+
+ <section class="main-footer bg-navy" >   </section>   
 <?php include_once "burengo-footer.php"; ?>
    
  

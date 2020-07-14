@@ -1,0 +1,190 @@
+<div class="card mt-4 mb-2">
+			<div class="card-header">
+            <h3 class="card-title"> <b class="text-muted"> <i class="fas fa-search"></i> Búsqueda por categorías</b>  </h3>
+
+            <div class="card-tools">
+              <a id="ctpBtn" href="#" class="btn-tool" optp="hide" ></a>
+            </div>
+          </div>
+<div id="ctp" class="card-body row p-0">
+	<div class="col-md-6 row pt-0 ml-1">
+<div class="col-sm-4 border-right border-top carTypeTxt ch1" cttlabel="1">
+                    <div class="description-block">
+                      <h5 class="description-header"><img class="img-fluid" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/sedan.png" alt="User Image"> </h5>
+                      <span class="description-text"><?php echo burengo_sedan; ?></span>
+                    </div>             
+                  </div>				
+				  
+				  <div class="col-sm-4 border-right border-top carTypeTxt ch2" cttlabel="2">
+                    <div class="description-block">
+                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/todoterreno.png" alt="User Image"> </h5>
+                      <span class="description-text"><?php echo  burengo_jeepeta; ?></span>
+                    </div>         
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-top carTypeTxt ch3" cttlabel="3">
+                    <div class="description-block ">
+                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/camioneta.png" alt="User Image"> </h5>
+                      <span class="description-text"><?php echo  burengo_camioneta; ?></span>
+                    </div>
+                  </div>				  
+				  <!------ Row 2-------->
+				  <div class="col-sm-4 border-right border-top carTypeTxt ch4" cttlabel="4">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/limusina.png" alt="User Image"> </h5>
+                      <span class="description-text"><?php echo  burengo_limo; ?></span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-right border-top carTypeTxt ch5" cttlabel="5">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/sport-car.png" alt="User Image"> </h5>
+                      <span class="description-text"><?php echo  burengo_coupe; ?></span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-top carTypeTxt ch6" cttlabel="6">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/motocicleta.png" alt="User Image"> </h5>
+                      <span class="description-text"> <?php echo  burengo_moto; ?> </span>
+                    </div>
+                  </div>
+				  	  <!------ Row 3 -------->
+				  <div class="col-sm-4 border-right border-top carTypeTxt ch7" cttlabel="7">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/bus-electrico.png" alt="User Image"> </h5>
+                      <span class="description-text"><?php echo  burengo_bus; ?></span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-right border-top carTypeTxt ch8" cttlabel="8">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/barco.png" alt="User Image"> </h5>
+                      <span class="description-text"><?php echo  burengo_boat; ?> </span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-top carTypeTxt ch9" cttlabel="9">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/moto-acuatica.png" alt="User Image"> </h5>
+                      <span class="description-text"> <?php echo  burengo_jetski; ?> </span>
+                    </div>
+                  </div>
+				  
+				  <!------ Row 4-------->
+				  <div class="col-sm-4 border-right border-top border-bottom carTypeTxt ch10" cttlabel="10">
+                    <div class="description-block">
+                      <h5 class="description-header"><img class="img-circle" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/camion.png" alt="User Image"> </h5>
+                      <span class="description-text"><?php echo  burengo_truck; ?></span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-right border-top border-bottom carTypeTxt ch11" cttlabel="11">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/mezclador.png" alt="User Image"> </h5>
+                      <span class="description-text"><?php echo  burengo_pesados; ?> </span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-top border-bottom carTypeTxt ch12" cttlabel="12">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/generador.png" alt="User Image"> </h5>
+                      <span class="description-text"> <?php echo  burengo_otros; ?> </span>
+                    </div>
+                  </div>
+
+	</div>
+<div class="col-md-6 row pt-0">
+		<div class="col-sm-4 border-right border-top border-left carTypeTxt ch14" cttlabel="14">
+                    <div class="description-block">
+                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/urbano.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_apartment; ?> </small> </span>
+                    </div>             
+                  </div>				
+				  
+				  <div class="col-sm-4 border-right border-top carTypeTxt ch13" cttlabel="13">
+                    <div class="description-block">
+                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/casas.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_homes; ?> </small></span>
+                    </div>         
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-top carTypeTxt ch20" cttlabel="20">
+                    <div class="description-block ">
+                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/condominio.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_edf; ?> </small> </span>
+                    </div>
+                  </div>				  
+				  <!------ Row 2-------->
+		  <div class="col-sm-4 border-right border-top border-left carTypeTxt ch17" cttlabel="17">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/bosque.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_finca; ?></small></span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-right border-top carTypeTxt ch22" cttlabel="22">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/grow-shop.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_comercial; ?> </small></span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-top carTypeTxt ch18" cttlabel="18">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/rama.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_naves; ?> </small> </span>
+                    </div>
+                  </div>
+				  	  <!------ Row 3 -------->
+				  <div class="col-sm-4 border-right border-top border-left carTypeTxt ch19" cttlabel="19">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/escritorio.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_oficinas; ?> </small></span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-right border-top carTypeTxt ch21" cttlabel="21">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/atico.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_penthouse; ?> </small></span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-top carTypeTxt ch23" cttlabel="23">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/event-room.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_events; ?> </small></span>
+                    </div>
+                  </div>
+				  
+				  <!------ Row 4-------->
+				  <div class="col-sm-4 border-right border-top border-left border-bottom carTypeTxt ch16" cttlabel="16">
+                    <div class="description-block">
+                      <h5 class="description-header"><img class=" " style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/anteproyecto.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_solares; ?> </small> </span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-right border-top border-bottom carTypeTxt ch15" cttlabel="15" >
+                    <div class="description-block ">
+                      <h5 class="description-header "><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/choza.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_villas; ?> </small> </span>
+                    </div>
+                  </div>				  
+				  
+				  <div class="col-sm-4 border-top border-bottom carTypeTxt ch24" cttlabel="24">
+                    <div class="description-block">
+                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/other.png" alt="User Image"> </h5>
+                      <span class="description-text"> <small> <?php echo burengo_otros; ?> </small> </span>
+                    </div>
+                  </div>
+
+
+</div>
+
+
+</div>		  
+		  
+
+</div>

@@ -16,7 +16,7 @@ $ced =  $_REQUEST["ced"];
 $phone =  $_REQUEST["tel"];
 $email =  $_REQUEST["email"];
 $bgo_whatsapp =  $_REQUEST["whatsapp"];
-$status = 0;
+$status = 1;
 $uid = "U".date('YmdHis').rand(1000,9999);
 $ct = COUNTRY_CODE; 
 

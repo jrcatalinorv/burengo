@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once "../modelos/conexion.php";
-
  
 $uid  = $_REQUEST["uid"];
  
@@ -29,7 +28,6 @@ if($results['uid']==$uid){
 	$_SESSION['bgo_year'] = date('Y');
 	$_SESSION['bgo_version'] = '1.1.0.1';
  
-	$out['url'] = $addr;
 	$out['ok'] = 1;
 	$out['status'] = 1; 
 }else{

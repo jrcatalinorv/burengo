@@ -12,7 +12,7 @@
             <i class="far fa-id-badge mr-2"></i> <?php echo burengo_Account; ?>    
           </a>
           <div class="dropdown-divider"></div>
-          <a href="mail/inbox.php" class="dropdown-item">
+          <a href="inbox.php" class="dropdown-item">
             <i class="fas fa-envelope mr-2"></i> <?php echo burengo_msg; ?>
           </a>
 		 <div class="dropdown-divider"></div>

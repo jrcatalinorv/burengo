@@ -2,7 +2,15 @@
 date_default_timezone_set("America/Santo_Domingo");
 require_once "../modelos/conexion.php";
 require_once "../modelos/data.php";
- 
+//require "../plugins/PHPMailer/src/Exception.php";
+//require "../plugins/PHPMailer/src/PHPMailer.php";
+//require "../plugins/PHPMailer/src/SMTP.php";
+
+// def name spaces
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 
 $date = date('Y-m-d');
 $plan = $_REQUEST["p"];
@@ -45,13 +53,60 @@ $stmt->bindParam(":up_status",$up_status, PDO::PARAM_INT);
 
 $stmt->execute();
 
+//--------------------------------------
+//Enviar el email al usuario 
+//--------------------------------------
+/* Buscar el usuario si existe */
+
+$stmt20 = Conexion::conectar()->prepare("SELECT * FROM bgo_users WHERE uid ='".$uid."' AND bgo_country ='".COUNTRY_CODE."'");
+$stmt20 -> execute();
+$results20 = $stmt20 -> fetch();
+
+
+	
+
+$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$first = substr(str_shuffle($permitted_chars), 0, 75);
+$second = $uid;
+$third = substr(str_shuffle($permitted_chars), 0, 35);
+$email = $results20["email"];
+
+
+$stmt44 = Conexion::conectar()->prepare("SELECT * FROM bgo_mail_server WHERE site_code = 'bgo'");
+$stmt44 -> execute(); 
+$rslt = $stmt44 -> fetch(); 
  
- 
-   
+// create instance phpmailer
+$mail = new PHPMailer();
+
+$mail->isSMTP();
+
+$mail->Host = $rslt["mail_host"];
+
+$mail->Port = $rslt["mail_port"];
+$mail->SMTPAuth = "true";
+$mail->Username = $rslt["mail_user"];
+$mail->Password = $rslt["mail_pass"]; 
+$mail->SMTPSecure = "tls";
+$mail->CharSet = "UTF-8";
+$mail->isHTML(true);
+$mail->setFrom("info@burengo.com");
+$mail->Subject = burengo_mailSubject2;
+$mail-> Body =  "<center>"
+				."\n\n"
+				."<h3> ".burengo_mailboddy2." </h3>"
+				."https://burengo.com/".COUNTRY_CODE."/confirmation/account.php?ft=".$first."&th=".$third."&sd=".$second.""
+				."</center>\n"
+				."\n"
+				."\n";
+$mail->addAddress($email);
+$mail->Send(); 
+$mail->smtpClose();   
 //--------------------------------------
 }else{
 	print_r($stmt2->errorInfo());
 	print_r($stmt0->errorInfo());
+	print_r($stmt->errorInfo());
 } 
 
 ?>
@@ -85,11 +140,19 @@ $stmt->execute();
         <div class="row">
 		<input id="getUserCode" type="hidden" value="<?php echo $uid; ?>"/>
           <div class="col-12">
-
+<?php 		  
+if(intval($results['planprice'])){
+		  
+echo '<div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h5><i class="icon fas fa-check"></i> '.burengo_paymentAlert.' </h5>
+     </div>'; 
+}	
+?> 	
 
 <div class="alert alert-success alert-dismissible">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-  <h5><i class="icon fas fa-envelope"></i> Su cuenta ha sido creada con éxito . </h5>
+  <h5><i class="icon fas fa-envelope"></i> Para finalizar la activación de su cuenta se ha enviado un email a su cuenta de correo. </h5>
 </div> 
 
 <div class="card">
@@ -143,8 +206,8 @@ $stmt->execute();
 					  </div>
 <div class="text-center mt-5 mb-3">
   <a href="<?php echo burengoBaseUrl; ?>" class="btn btn-sm btn-primary"> <i class="fas fa-list-alt"></i> <?php echo burengo_mainPage; ?> </a>
-  <button type="button" id="goToAcc"  class="btn btn-sm btn-success"> <i class="fas fa-user"></i> <?php echo burengo_accMyAccount; ?> </button>
- 
+<!--  <button type="button" id="goToAcc"  class="btn btn-sm btn-success"> <i class="fas fa-user"></i> <?php echo burengo_accMyAccount; ?> </button>
+-->
 </div>
 </div>
  </div>
@@ -158,82 +221,7 @@ $stmt->execute();
       </div><!-- /.container-fluid -->
     </section>
   </div>
-<div class="modal fade" id="modal-sample">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title"> <?php echo burengo_policy2; ?></h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-			<div class="row" style="height:300px;   overflow-y: auto; overflow-x: hidden;">
-              <p class="justify-content-between"><?php echo burengo_contract1; ?></p>
-			  </div>
- 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default float-right" data-dismiss="modal"> <?php echo burengo_close; ?> </button>
-              
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-<div class="modal fade" id="modal-sample2">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"> <?php echo burengo_policy1; ?> </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-			 <div class="row" style="height:300px;   overflow-y: auto; overflow-x: hidden;">
-               <p class="justify-content-between"> <?php echo burengo_contract2; ?> </p>
-		     </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default float-right" data-dismiss="modal"> <?php echo burengo_close; ?></button>
-              
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-
-<section class="main-footer bg-navy">   </section>  
-<footer class="main-footer bg-navy" style="border-color: #001f3f;"> 
- <div class="row">	
-	<div class="col-md-8">
-	<p>El uso de este site implica la aceptación de nuestra política de privacidad y términos y condiciones de uso.</p>
-	
-	<p class="pt-2"><a href="#" class="text-center text-danger" data-toggle="modal" data-target="#modal-sample"><?php echo burengo_policy2; ?> </a> </p>
-	<p><a href="#" class=" text-center text-danger" data-toggle="modal" data-target="#modal-sample2"> Política de Devoluciones, Reembolsos y Cancelaciones </a></p>
-	<p><a href="<?php echo burengoBaseUrl; ?>" class=" text-center text-danger"> Ir a Portada </a></p>
-
-	</div>  
-    <div class="col-md-4"> 
-		<h6 class="mb-4 text-info"> ¡Síguenos & Contáctanos! </h6> 
-<ul class="list-unstyled pl-2">
-<li><a href="https://www.facebook.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-facebook-square fa-1x text-primary"></i>  burengoweb </a></li>
-
-<li class="pt-2"><a href="https://www.instagram.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-instagram fa-1x text-danger"></i></i>  burengoweb </a></li>
-
-<li class="pt-2"><a href="mailto:info@burengo.com" target="_blank" class="btn-link text-white"> <i class="fas fa-envelope fa-1x text-warning"></i></i>  info@burengo.com </a></li>
-<li class="pt-2"><a href="../contacto.php" class="btn-link text-white"> <i class="fas fa-envelope-open-text fa-1x text-info"></i> Preguntas y Sugerencias      </a></li>
-               
-              </ul>		
-		
-	</div>
-<div class="col-md-12 pt-4 " style="bottom:0;"> 	<h6 class="mb-2">Burengo.com &copy; 2020 - <?php echo burengo_copyright; ?> </h6> </div>	
-</div>
-	
-</footer>
+<footer class="main-footer"> Burengo &copy; 2020 - <?php echo burengo_copyright; ?> </footer>
 </div>
 <script src="../plugins/jquery/jquery.min.js"></script>
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -247,7 +235,7 @@ $stmt->execute();
 	   switch(data['ok'])
 		{
 			case 0: toastr.error('No fue posible iniciar Session'); break;
-			case 1: window.location =  "<?php echo burengoBaseUrl; ?>"; break;		
+			case 1: window.location = "../access/"+data['url']; break;		
 		 }
 	});
  });

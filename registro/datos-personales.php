@@ -32,6 +32,9 @@ $code = rand(1000000,9999999) ;
     <div class="content-header">
       <div class="container">
         <div class="row mb-2">
+		<input id="getCode" type="hidden" value="<?php echo $uid; ?>">
+		<input id="getPlan" type="hidden" value="1">
+		
         </div><!-- /.row -->
       </div> 
  </div>
@@ -284,8 +287,35 @@ $code = rand(1000000,9999999) ;
         <!-- /.modal-dialog -->
       </div>
 
- <section class="main-footer bg-navy" >   </section>  
-<?php include_once "../burengo-footer.php"; ?>
+ 
+<section class="main-footer bg-navy">   </section>  
+<footer class="main-footer bg-navy" style="border-color: #001f3f;"> 
+ <div class="row">	
+	<div class="col-md-8">
+	<p>El uso de este site implica la aceptación de nuestra política de privacidad y términos y condiciones de uso.</p>
+	
+	<p class="pt-2"><a href="#" class="text-center text-danger" data-toggle="modal" data-target="#modal-sample"><?php echo burengo_policy2; ?> </a> </p>
+	<p><a href="#" class=" text-center text-danger" data-toggle="modal" data-target="#modal-sample2"> Política de Devoluciones, Reembolsos y Cancelaciones </a></p>
+	<p><a href="<?php echo burengoBaseUrl; ?>" class=" text-center text-danger"> Ir a Portada </a></p>
+
+	</div>  
+    <div class="col-md-4"> 
+		<h6 class="mb-4 text-info"> ¡Síguenos & Contáctanos! </h6> 
+<ul class="list-unstyled pl-2">
+<li><a href="https://www.facebook.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-facebook-square fa-1x text-primary"></i>  burengoweb </a></li>
+
+<li class="pt-2"><a href="https://www.instagram.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-instagram fa-1x text-danger"></i></i>  burengoweb </a></li>
+
+<li class="pt-2"><a href="mailto:info@burengo.com" target="_blank" class="btn-link text-white"> <i class="fas fa-envelope fa-1x text-warning"></i></i>  info@burengo.com </a></li>
+<li class="pt-2"><a href="../contacto.php" class="btn-link text-white"> <i class="fas fa-envelope-open-text fa-1x text-info"></i> Preguntas y Sugerencias      </a></li>
+               
+              </ul>		
+		
+	</div>
+<div class="col-md-12 pt-4 " style="bottom:0;"> 	<h6 class="mb-2">Burengo.com &copy; 2020 - <?php echo burengo_copyright; ?> </h6> </div>	
+</div>
+	
+</footer>
 </div>
 <script src="../plugins/jquery/jquery.min.js"></script>
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -367,7 +397,13 @@ $('#saveNewUsr').click(function(){
 	},function(data){
 		switch(data['ok']){
 			case 0: toastr.error('ERROR! No se pudo almacenar los datos: '+ data['err']); break;
-			case 1: var code = <?php echo $code; ?>; location.href="planes.php?code="+code+"&acc="+data['code']+""; break;
+			case 1: 
+			
+ 
+					var idPlan = $('#getPlan').val();
+					location.href="confirmation.php?p="+idPlan+"&acc="+data['code'];
+			
+			break;
 			case 2:  toastr.info('<?php echo burengo_errAlert; ?>');  toastr.error('<?php echo burengo_err3; ?>'); break;
 			case 3:  toastr.info('<?php echo burengo_errAlert; ?>');  toastr.error('<?php echo burengo_err2; ?>'); break;
 			case 4:  toastr.info('<?php echo burengo_errAlert; ?>');  toastr.error('<?php echo burengo_err4; ?>'); break;

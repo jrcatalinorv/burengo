@@ -7,10 +7,14 @@ require_once "modelos/data.php";
 require_once "modelos/settings.php";
 $code = rand(1000000,9999999) ;
 
+  if(isset($_SESSION["bgoSesion"]) && $_SESSION["bgoSesion"] == "ok"){
+
 $stmt = Conexion::conectar()->prepare(" SELECT COUNT(bgo_code) as totalpv FROM bgo_posts WHERE bgo_usercode = '".$_SESSION['bgo_userId']."'");
 $stmt -> execute();
 $results = $stmt-> fetch();
 $total_postv = number_format($results['totalpv']);
+
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,38 +134,29 @@ $_SESSION['bgo_maxP'] = "0";
               </div>
             </div>
 <!-- ==================================================================================================================== -->			
-			<!-- Adsence - Pantallas Grandes  Tamaño ** 300 x 250 ** Debajo de botones comprar / rentar: En este espacio caben 2  -->
-			<div class="gAdsenceVertical" title="Burengo Anuncio 1">
- 
-			</div>
+ <div class="gAdsenceVertical" title="Burengo Anuncio 1"> </div>
+
+ <div class="gAdsenceVertical" title="Burengo Anuncio 2"> </div>
 			
-					 
-			<div class="gAdsenceVertical" title="Burengo Anuncio 2">
- 
-			</div>
-			<!-- ./ Fin espacio para anuncios de adsence 300 x 250  -->
-			
-			<!-- Adsence - Pantallas Celulares - Tamaño ** 320 x 50 ** Debajo de botones comprar / rentar  -->
-			<div class="gAdsenceVerticalphone" title="Burengo Anuncio celular ">
- 
-			</div>
-			<!-- ./ Fin espacio para anuncios de adsence celulares -->
+<!-- Adsence - Pantallas Celulares - Tamaño ** 320 x 50 ** Debajo de botones comprar / rentar  -->
+<div class="gAdsenceVerticalphone" title="Burengo Anuncio celular"> </div>
+<!-- ./ Fin espacio para anuncios de adsence celulares -->
 <!-- ==================================================================================================================== -->				
 			
           </div>
 
 <div style="margin-top:-1.2em;" class="col-lg-9 p-0">
-	<!-- Adsence - Pantallas Grandes  Tamaño ** 720 x 100  Encima de las publicaciones  -->
+ 
 
  
 <div class="">
 
  <div class="card-body outer-plist">
+ 	<div class="gAdsenceHorizontal" title="Burengo Anuncio 3"></div>
  
- 	<div class="gAdsenceHorizontal"></div>
 <div class="card card-outline card-warning">
  
- <h3 class="card-title p-3 text-mute">  Anuncios Destacados   </h3>
+ <h3 class="card-title p-3 text-mute">  <b class="text-muted">  Anuncios Destacados </b>  </h3>
   <div class="card-body p-1">
   
 	<div class="plist pb-2"></div>       
@@ -171,204 +166,18 @@ $_SESSION['bgo_maxP'] = "0";
 
 
 
-<div class="card mt-4 mb-2">
-			<div class="card-header">
-            <h3 class="card-title"> <b class="text-primary"> <i class="fas fa-search"></i> Búsqueda por categorías</b>  </h3>
-
-            <div class="card-tools">
-              <a id="ctpBtn" href="#" class="btn-tool" optp="hide" ></a>
-            </div>
-          </div>
-<div id="ctp" class="card-body row p-0">
-	<div class="col-md-6 row pt-0 ml-1">
-<div class="col-sm-4 border-right border-top carTypeTxt ch1" cttlabel="1">
-                    <div class="description-block">
-                      <h5 class="description-header"><img class="img-circle" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/sedan.png" alt="User Image"> </h5>
-                      <span class="description-text"><?php echo burengo_sedan; ?></span>
-                    </div>             
-                  </div>				
-				  
-				  <div class="col-sm-4 border-right border-top carTypeTxt ch2" cttlabel="2">
-                    <div class="description-block">
-                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/todoterreno.png" alt="User Image"> </h5>
-                      <span class="description-text"><?php echo  burengo_jeepeta; ?></span>
-                    </div>         
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-top carTypeTxt ch3" cttlabel="3">
-                    <div class="description-block ">
-                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/camioneta.png" alt="User Image"> </h5>
-                      <span class="description-text"><?php echo  burengo_camioneta; ?></span>
-                    </div>
-                  </div>				  
-				  <!------ Row 2-------->
-				  <div class="col-sm-4 border-right border-top carTypeTxt ch4" cttlabel="4">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/limusina.png" alt="User Image"> </h5>
-                      <span class="description-text"><?php echo  burengo_limo; ?></span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-right border-top carTypeTxt ch5" cttlabel="5">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/sport-car.png" alt="User Image"> </h5>
-                      <span class="description-text"><?php echo  burengo_coupe; ?></span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-top carTypeTxt ch6" cttlabel="6">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/motocicleta.png" alt="User Image"> </h5>
-                      <span class="description-text"> <?php echo  burengo_moto; ?> </span>
-                    </div>
-                  </div>
-				  	  <!------ Row 3 -------->
-				  <div class="col-sm-4 border-right border-top carTypeTxt ch7" cttlabel="7">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/bus-electrico.png" alt="User Image"> </h5>
-                      <span class="description-text"><?php echo  burengo_bus; ?></span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-right border-top carTypeTxt ch8" cttlabel="8">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/barco.png" alt="User Image"> </h5>
-                      <span class="description-text"><?php echo  burengo_boat; ?> </span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-top carTypeTxt ch9" cttlabel="9">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/moto-acuatica.png" alt="User Image"> </h5>
-                      <span class="description-text"> <?php echo  burengo_jetski; ?> </span>
-                    </div>
-                  </div>
-				  
-				  <!------ Row 4-------->
-				  <div class="col-sm-4 border-right border-top border-bottom carTypeTxt ch10" cttlabel="10">
-                    <div class="description-block">
-                      <h5 class="description-header"><img class="img-circle" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/camion.png" alt="User Image"> </h5>
-                      <span class="description-text"><?php echo  burengo_truck; ?></span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-right border-top border-bottom carTypeTxt ch11" cttlabel="11">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/mezclador.png" alt="User Image"> </h5>
-                      <span class="description-text"><?php echo  burengo_pesados; ?> </span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-top border-bottom carTypeTxt ch12" cttlabel="12">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/generador.png" alt="User Image"> </h5>
-                      <span class="description-text"> <?php echo  burengo_otros; ?> </span>
-                    </div>
-                  </div>
-
-	</div>
-<div class="col-md-6 row pt-0">
-		<div class="col-sm-4 border-right border-top carTypeTxt ch14" cttlabel="14">
-                    <div class="description-block">
-                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/urbano.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_apartment; ?> </small> </span>
-                    </div>             
-                  </div>				
-				  
-				  <div class="col-sm-4 border-right border-top carTypeTxt ch13" cttlabel="13">
-                    <div class="description-block">
-                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/casas.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_homes; ?> </small></span>
-                    </div>         
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-top carTypeTxt ch20" cttlabel="20">
-                    <div class="description-block ">
-                      <h5 class="description-header"><img class="" style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/condominio.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_edf; ?> </small> </span>
-                    </div>
-                  </div>				  
-				  <!------ Row 2-------->
-		  <div class="col-sm-4 border-right border-top carTypeTxt ch17" cttlabel="17">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/bosque.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_finca; ?></small></span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-right border-top carTypeTxt ch22" cttlabel="22">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/grow-shop.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_comercial; ?> </small></span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-top carTypeTxt ch18" cttlabel="18">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/rama.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_naves; ?> </small> </span>
-                    </div>
-                  </div>
-				  	  <!------ Row 3 -------->
-				  <div class="col-sm-4 border-right border-top carTypeTxt ch19" cttlabel="19">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/escritorio.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_oficinas; ?> </small></span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-right border-top carTypeTxt ch21" cttlabel="21">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/atico.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_penthouse; ?> </small></span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-top carTypeTxt ch23" cttlabel="23">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/event-room.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_events; ?> </small></span>
-                    </div>
-                  </div>
-				  
-				  <!------ Row 4-------->
-				  <div class="col-sm-4 border-right border-top border-bottom carTypeTxt ch16" cttlabel="16">
-                    <div class="description-block">
-                      <h5 class="description-header"><img class=" " style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/anteproyecto.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_solares; ?> </small> </span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-right border-top border-bottom carTypeTxt ch15" cttlabel="15" >
-                    <div class="description-block ">
-                      <h5 class="description-header "><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/choza.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_villas; ?> </small> </span>
-                    </div>
-                  </div>				  
-				  
-				  <div class="col-sm-4 border-top border-bottom carTypeTxt ch24" cttlabel="24">
-                    <div class="description-block">
-                      <h5 class="description-header"><img style="width:50px;" src="<?php echo burengoBaseUrl; ?>/media/icons/other.png" alt="User Image"> </h5>
-                      <span class="description-text"> <small> <?php echo burengo_otros; ?> </small> </span>
-                    </div>
-                  </div>
-
-
-</div>
-
-
+<div class=" mt-4 mb-2">
+	 
+<div class="row p-0">
+<div class="gAdsenceHorizontal" title="Burengo Anuncio 4"></div> 
 </div>		  
-		  
-
 </div>
 
 
- <!-- ==================================================================================================================== -->	
-	<!-- Adsence - Pantallas Grandes  Tamaño ** 720 x 100  Encima de las publicaciones  -->
-	<div class="gAdsenceHorizontal mt-4"></div> 
+
 
 <div class="card card-outline card-success mb-4 mt-4">
-  <h3 class="card-title p-3 text-mute">   Anuncios Recientes   </h3>
+  <h4 class="card-title p-3 text-mute">   <b class="text-muted"> Anuncios Recientes </b>  </h4>
   <div class="card-body p-1">
 <div class="recentPost">
 <?php 
@@ -465,8 +274,12 @@ echo '<li class="page-item" pg="'.$next.'"> <button class="btn btn-success btn-f
 </div>      
 
   </div> 
+  
+  
+ 
+  
   </div>
-
+	
 <!-- ==================================================================================================================== -->	
 
    
@@ -578,7 +391,6 @@ echo '<li class="page-item" pg="'.$next.'"> <button class="btn btn-success btn-f
           </div>
         </div>
 </div>
-
 <div class="modal fade" id="modal-planMaxOut">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -596,7 +408,6 @@ echo '<li class="page-item" pg="'.$next.'"> <button class="btn btn-success btn-f
           </div>
         </div>
 </div>
-
 <div class="modal fade" id="modal-favorites">
  <div class="modal-dialog">
    <div class="modal-content">
@@ -614,10 +425,6 @@ echo '<li class="page-item" pg="'.$next.'"> <button class="btn btn-success btn-f
    </div>
     </div>
       </div>
-   <!-- /.modal -->
-
-
-
 <div class="modal fade" id="modal-sample">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -666,8 +473,34 @@ echo '<li class="page-item" pg="'.$next.'"> <button class="btn btn-success btn-f
         <!-- /.modal-dialog -->
       </div>
 
- <section class="main-footer bg-navy" >   </section>  
-<?php include_once "burengo-footer.php"; ?>
+<section class="main-footer bg-navy">   </section>  
+<footer class="main-footer bg-navy" style="border-color: #001f3f;"> 
+ <div class="row">	
+	<div class="col-md-8">
+	<p>El uso de este site implica la aceptación de nuestra política de privacidad y términos y condiciones de uso.</p>
+	
+	<p class="pt-2"><a href="#" class="text-center text-danger" data-toggle="modal" data-target="#modal-sample"><?php echo burengo_policy2; ?> </a> </p>
+	<p><a href="#" class=" text-center text-danger" data-toggle="modal" data-target="#modal-sample2"> Política de Devoluciones, Reembolsos y Cancelaciones </a></p>
+	<p><a href="<?php echo burengoBaseUrl; ?>" class=" text-center text-danger"> Ir a Portada </a></p>
+
+	</div>  
+    <div class="col-md-4"> 
+		<h6 class="mb-4 text-info"> ¡Síguenos & Contáctanos! </h6> 
+<ul class="list-unstyled pl-2">
+<li><a href="https://www.facebook.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-facebook-square fa-1x text-primary"></i>  burengoweb </a></li>
+
+<li class="pt-2"><a href="https://www.instagram.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-instagram fa-1x text-danger"></i></i>  burengoweb </a></li>
+
+<li class="pt-2"><a href="mailto:info@burengo.com" target="_blank" class="btn-link text-white"> <i class="fas fa-envelope fa-1x text-warning"></i></i>  info@burengo.com </a></li>
+<li class="pt-2"><a href="contacto.php" class="btn-link text-white"> <i class="fas fa-envelope-open-text fa-1x text-info"></i> Preguntas y Sugerencias      </a></li>
+               
+              </ul>		
+		
+	</div>
+<div class="col-md-12 pt-4 " style="bottom:0;"> 	<h6 class="mb-2">Burengo.com &copy; 2020 - <?php echo burengo_copyright; ?> </h6> </div>	
+</div>
+	
+</footer>
 
 </div>
 <script src="<?php echo burengoBaseUrl; ?>plugins/jquery/jquery.min.js"></script>
@@ -678,10 +511,10 @@ echo '<li class="page-item" pg="'.$next.'"> <button class="btn btn-success btn-f
 <script type="text/javascript">
 $(document).ready(function(){
 $('.plist').load('<?php echo burengoBaseUrl; ?>ajax/burengo_select.php?typo='+$('#route01').val()+'&pageno='+$('#pageCant').val());
-document.getElementById('ctpBtn').innerHTML='<i class="fas fa-minus"></i>';
 getopPages();
 first();
 });
+
 
 function explode(){
 var top = parseInt($('#pageTop').val());
@@ -725,6 +558,7 @@ $('.viewFilter').on('click', 'button.viewOption', function(){
 	$('#pageCant').val(1);
 	
 	$('.plist').load('<?php echo burengoBaseUrl; ?>ajax/burengo_select.php?typo='+$('#route01').val()+'&pageno='+$('#pageCant').val());		
+	$('.recentPost').load('<?php echo burengoBaseUrl; ?>ajax/burengo_select_recent.php?typo='+$('#route01').val()+'&pageno='+$('#pageCant').val());		
 	getopPages();
 });
 
@@ -822,8 +656,6 @@ $('#uploadFiles').click(function(){
 	 }  
  });
 
-
-
 $('#btnPublicar').click(function(){
 	var total = parseInt($('#planTotalP').val());
 	var max   = parseInt($('#planMaxP').val());  
@@ -836,8 +668,6 @@ $('#btnPublicar').click(function(){
 
 
 $('.whlist').load("<?php echo burengoBaseUrl; ?>ajax/burengo_select_favorites.php?id="+$('#currentCode').val());
-
-
 $('.whlist').on("click","span.itemSelection",function(){
 	var id = $(this).attr('itemId');
 	var cat = $(this).attr('stid');
@@ -884,37 +714,14 @@ $('.whlist').on("click","a.itemDelete",function(){
 });
 
 
-$("#ctpBtn").click(function(){
-  var op = $(this).attr('optp');
-  
-switch(op){
-	case 'show': 
-		$("#ctp").show();
-		document.getElementById('ctpBtn').innerHTML='<i class="fas fa-minus"></i>';
-		$("#ctpBtn").attr('optp','hide');
-	break;
-	case 'hide': 
-	   $("#ctp").hide();
-	   document.getElementById('ctpBtn').innerHTML='<i class="fas fa-plus"></i>';
-	   $("#ctpBtn").attr('optp','show');	
-	 break;
-} 
-});
-
-
-$('.carTypeTxt').mouseover(function(){
-	$(this).addClass("bg-warning"); 
-});
-
-$( ".carTypeTxt" ).mouseout(function(){
-    $(this).removeClass("bg-warning");
-});
-
+ 
+ 
 
 $('#btnBuyVh').click(function(){ location.href="<?php echo burengoBaseUrl; ?>vehiculos/filtro.php?cat=1"; });
 $('#btnRentVh').click(function(){location.href="<?php echo burengoBaseUrl; ?>vehiculos/filtro.php?cat=2"; });
 $('#btnBuyIm').click(function(){ location.href="<?php echo burengoBaseUrl; ?>inmuebles/filtro.php?cat=1"; });
 $('#btnRentIm').click(function(){ location.href="<?php echo burengoBaseUrl; ?>inmuebles/filtro.php?cat=2"; });
+
 </script>
 </body>
 </html>

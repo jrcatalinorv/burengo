@@ -1,4 +1,5 @@
 <?php 
+session_start();
 date_default_timezone_set("America/Santo_Domingo");
 require_once "../modelos/conexion.php";
 require_once "../modelos/data.php";
@@ -16,8 +17,8 @@ $tp = $_REQUEST['cat'];
   <title>Burengo - Compra, renta o vende vehículos e inmuebles</title>
   <link rel="stylesheet" href="<?php echo burengoBaseUrl; ?>/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?php echo burengoBaseUrl; ?>/plugins/bootstrap-slider/css/bootstrap-slider.min.css">
-  <link rel="stylesheet" href="<?php echo burengoBaseUrl; ?>/dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="<?php echo burengoBaseUrl; ?>/dist/css/burengo-min.css">
+  <link rel="stylesheet" href="<?php echo burengoBaseUrl; ?>/dist/css/adminlte.css">
+  <link rel="stylesheet" href="<?php echo burengoBaseUrl; ?>/dist/css/burengo-min-filtro.css">
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -28,8 +29,44 @@ $tp = $_REQUEST['cat'];
         <ul class="navbar-nav"> </ul>
       </div>
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-        <li class="nav-item"><a class="nav-link" href="<?php echo burengoBaseUrl; ?>"> <?php echo burengo_portada; ?> </a></li>
-        <li class="nav-item"><a class="nav-link" href="<?php echo burengoBaseUrl; ?>/acceder.php"> <?php echo burengo_login; ?> </a></li>
+<?php
+  if(isset($_SESSION["bgoSesion"]) && $_SESSION["bgoSesion"] == "ok"){
+	 echo '<li class="nav-item"><a class="nav-link" href="profile.php">
+			 <img alt="Avatar"  class="user-image" src="../media/users/'.$_SESSION['bgo_userImg'].'">
+			 '.$_SESSION['bgo_user'].'</a>
+		</li>
+';
+		
+	 echo '<li class="nav-item dropdown show">
+        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="true">
+          <i class="fas fa-bars fa-lg"></i> </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+             
+          <div class="dropdown-divider"></div>		  
+          <a href="../mis-publicaciones.php" class="dropdown-item"><i class="far fa-list-alt mr-2"></i>'.burengo_Mypost.'</a>
+          <div class="dropdown-divider"></div>
+          <a href="../profile.php" class="dropdown-item">
+            <i class="far fa-id-badge mr-2"></i>'.burengo_Account.'</a>
+          <div class="dropdown-divider"></div>
+          <a href="../inbox.php" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i>'.burengo_msg.'</a>
+		    <div class="dropdown-divider"></div>
+          <a href="../salir.php" class="dropdown-item"> <i class="fas fa-sign-out-alt text-danger mr-2"></i> '.burengo_logout.'</a>
+        </div>
+      </li>	';
+		
+	 
+  }else{
+echo '<li class="nav-item"><a class="nav-link" href="'.burengoBaseUrl.'">'.burengo_portada.'</a></li>';
+echo '<li class="nav-item"><a class="nav-link" href="'.burengoBaseUrl.'/acceder.php"> '.burengo_login.'</a></li>';
+
+$_SESSION['bgo_userId']="0";
+$_SESSION['bgo_maxP'] = "0";
+  }?>	  
+	  
+	  
+        <!-- 
+         -->
       </ul>
     </div>
   </nav>
@@ -229,7 +266,82 @@ $tp = $_REQUEST['cat'];
       </div> 
     </div>
   </div>
-  <footer class="main-footer"> Burengo &copy; 2020 - <?php echo burengo_copyright; ?> </footer>
+<div class="modal fade" id="modal-sample">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title"> <?php echo burengo_policy2; ?></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+			<div class="row" style="height:300px;   overflow-y: auto; overflow-x: hidden;">
+              <p class="justify-content-between"><?php echo burengo_contract1; ?></p>
+			  </div>
+ 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default float-right" data-dismiss="modal"> <?php echo burengo_close; ?> </button>
+              
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+<div class="modal fade" id="modal-sample2">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"> <?php echo burengo_policy1; ?> </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+			 <div class="row" style="height:300px;   overflow-y: auto; overflow-x: hidden;">
+               <p class="justify-content-between"> <?php echo burengo_contract2; ?> </p>
+		     </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default float-right" data-dismiss="modal"> <?php echo burengo_close; ?></button>
+              
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+<section class="main-footer bg-navy">   </section>  
+<footer class="main-footer bg-navy" style="border-color: #001f3f;"> 
+ <div class="row">	
+	<div class="col-md-8">
+	<p>El uso de este site implica la aceptación de nuestra política de privacidad y términos y condiciones de uso.</p>
+	
+	<p class="pt-2"><a href="#" class="text-center text-danger" data-toggle="modal" data-target="#modal-sample"><?php echo burengo_policy2; ?> </a> </p>
+	<p><a href="#" class=" text-center text-danger" data-toggle="modal" data-target="#modal-sample2"> Política de Devoluciones, Reembolsos y Cancelaciones </a></p>
+	<p><a href="<?php echo burengoBaseUrl; ?>" class=" text-center text-danger"> Ir a Portada </a></p>
+
+	</div>  
+    <div class="col-md-4"> 
+		<h6 class="mb-4 text-info"> ¡Síguenos & Contáctanos! </h6> 
+<ul class="list-unstyled pl-2">
+<li><a href="https://www.facebook.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-facebook-square fa-1x text-primary"></i>  burengoweb </a></li>
+
+<li class="pt-2"><a href="https://www.instagram.com/burengoweb" target="_blank" class="btn-link text-white"> <i class="fab fa-instagram fa-1x text-danger"></i></i>  burengoweb </a></li>
+
+<li class="pt-2"><a href="mailto:info@burengo.com" target="_blank" class="btn-link text-white"> <i class="fas fa-envelope fa-1x text-warning"></i></i>  info@burengo.com </a></li>
+<li class="pt-2"><a href="contacto.php" class="btn-link text-white"> <i class="fas fa-envelope-open-text fa-1x text-info"></i> Preguntas y Sugerencias      </a></li>
+               
+              </ul>		
+		
+	</div>
+<div class="col-md-12 pt-4 " style="bottom:0;"> 	<h6 class="mb-2">Burengo.com &copy; 2020 - <?php echo burengo_copyright; ?> </h6> </div>	
+</div>
+	
+</footer>
 </div>
 
 <script src="<?php echo burengoBaseUrl; ?>/plugins/jquery/jquery.min.js"></script>
